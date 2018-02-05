@@ -1,6 +1,8 @@
 package br.ufs.dcomp.guia.model.usuario;
 
-public class Usuario {
+import br.ufs.dcomp.guia.model.IModel;
+
+public class Usuario implements IModel {
     private Integer id;
     private String nome;
     private String email;
