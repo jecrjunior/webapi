@@ -20,6 +20,6 @@ public class AcessoService {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Acesso!";
+        return "Hello world!";
     }
 }
