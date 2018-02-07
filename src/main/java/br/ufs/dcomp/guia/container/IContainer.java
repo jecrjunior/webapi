@@ -1,5 +1,8 @@
 package br.ufs.dcomp.guia.container;
 
-public interface IContainer {
+import java.util.List;
 
+public interface IContainer {
+	public List<Content> getChilds();
+	public void setChilds(List<Content> childs);
 }
