@@ -18,4 +18,9 @@ public class Container extends Content implements IContainer{
 	public void setChilds(List<Content> childs) {
 		this.childs = childs;
 	}
+
+	@Override
+	public IContentIterator getIterator() {
+		return new ContentIterator(this);
+	}
 }
