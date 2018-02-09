@@ -2,6 +2,7 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 
 import br.ufs.dcomp.guia.dataaccess.DataModule;
 import br.ufs.dcomp.guia.model.IModel;
+import java.util.List;
 
 public abstract class StrategyDAO<IModel> {
     DataModule dm = DataModule.getInstance();
@@ -21,7 +22,8 @@ public abstract class StrategyDAO<IModel> {
     }
 
     public abstract IModel read(Integer id);
-
+    public abstract List<IModel> readAll();
+    
     public boolean update(IModel model) {
         boolean result = false;
         try {
@@ -53,5 +55,6 @@ public abstract class StrategyDAO<IModel> {
     public abstract String getInsertStatment(IModel model);
     public abstract String getUpdateStatment(IModel model);
     public abstract String getSelectStatment(Integer id);
-    public abstract String getDeleteStatment(Integer id); 
+    public abstract String getDeleteStatment(Integer id);
+    public abstract String getSelectAllStatment(); 
 }

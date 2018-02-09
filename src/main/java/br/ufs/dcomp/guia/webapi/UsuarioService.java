@@ -29,7 +29,7 @@ public class UsuarioService {
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)     
-    public Usuario get(@DefaultValue("0") @QueryParam("id") Integer id) {
+    public Usuario get(@DefaultValue("-1") @QueryParam("id") Integer id) {
         return this.dataAccess.readUsuario(id);
     }
 
@@ -50,7 +50,7 @@ public class UsuarioService {
     @DELETE
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)    
-    public String delete(@DefaultValue("0") @QueryParam("id") Integer id) {
+    public String delete(@DefaultValue("-1") @QueryParam("id") Integer id) {
         return this.dataAccess.deleteUsuario(id) ? "ok" : "error";
     }
 

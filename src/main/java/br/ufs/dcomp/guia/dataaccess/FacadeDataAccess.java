@@ -103,4 +103,24 @@ public class FacadeDataAccess implements IDataAccess {
 		AcessoDAO dao = new AcessoDAO();
 		return dao.delete(acesso);
 	}
+	@Override
+	public List<Guia> readAllGuia() {
+		GuiaDAO dao = new GuiaDAO();
+		return dao.readAll();
+	}
+	@Override
+	public List<Guia> readChildsOf(Integer idPai) {
+		GuiaDAO dao = new GuiaDAO();
+		return dao.readChildsOf(idPai);
+	}
+	@Override
+	public List<ItemGuia> readAllItemGuia() {
+		ItemGuiaDAO dao = new ItemGuiaDAO();
+		return dao.readAll();
+	}
+	@Override
+	public List<Acesso> readAllAcesso() {
+		AcessoDAO dao = new AcessoDAO();
+		return dao.readAll();
+	}
 }

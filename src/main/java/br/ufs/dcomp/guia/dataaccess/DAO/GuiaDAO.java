@@ -2,6 +2,8 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import br.ufs.dcomp.guia.model.Guia;
 
 public class GuiaDAO extends StrategyDAO<Guia> {
@@ -16,7 +18,7 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 				guia.setId(r.getInt("id"));
 				guia.setTitle(r.getString("title"));
 				guia.setDescricao(r.getString("descricao"));
-				guia.setPublication(r.getDate("publication"));
+				guia.setPublication(r.getTimestamp("publication"));
 				guia.setIdPai(r.getInt("idpai"));
 			}
 		} catch (SQLException e) {
@@ -52,9 +54,22 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 	@Override
 	public String getSelectStatment(Integer id) {
 		return String.format(
-			"SELECT id, title, publication, descricao, idpai FROM public.tb_guia WHERE (id = %s);",
+			this.getSelectAllStatment() +
+			" WHERE (id = %s);",
 			id.toString() 
 		);
+	}
+
+	public String getSelectStatmentChildsOf(Integer idPai) {
+		return String.format(
+			this.getSelectAllStatment() +
+			" WHERE (idpai = %s);",
+			idPai.toString() 
+		);
+	}
+
+	public String getSelectAllStatment() {
+		return "SELECT id, title, publication, descricao, idpai FROM public.tb_guia ";
 	}
 
 	@Override
@@ -65,4 +80,44 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 		);
 	}
 
+	@Override
+	public List<Guia> readAll() {
+		List<Guia> lstGuia = new ArrayList<Guia>();
+		try {
+			ResultSet r = this.dm.executeQuery(this.getSelectAllStatment());
+			while (r.next()) {
+				Guia guia = new Guia();
+				guia.setId(r.getInt("id"));
+				guia.setDescricao(r.getString("descricao"));
+				guia.setTitle(r.getString("title"));
+				guia.setPublication(r.getTimestamp("publication"));
+				guia.setIdPai(r.getInt("idpai"));
+				lstGuia.add(guia);
+			}
+		} catch (SQLException e) {
+			lstGuia = null;
+			e.printStackTrace();
+		}		
+		return lstGuia;
+	}
+
+	public List<Guia> readChildsOf(Integer idPai) {
+		List<Guia> lstGuia = new ArrayList<Guia>();
+		try {
+			ResultSet r = this.dm.executeQuery(this.getSelectStatmentChildsOf(idPai));
+			while (r.next()) {
+				Guia guia = new Guia();
+				guia.setId(r.getInt("id"));
+				guia.setDescricao(r.getString("descricao"));
+				guia.setTitle(r.getString("title"));
+				guia.setPublication(r.getTimestamp("publication"));
+				guia.setIdPai(r.getInt("idpai"));
+				lstGuia.add(guia);
+			}
+		} catch (SQLException e) {
+			lstGuia = null;
+			e.printStackTrace();
+		}		
+		return lstGuia;
+	}
 }
