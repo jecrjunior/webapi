@@ -9,7 +9,7 @@ public abstract class StrategyDAO<IModel> {
     public boolean create(IModel model) {
         boolean result = false;
         try {
-            this.dm.executeQuery(
+            this.dm.executeStatment(
                 this.getInsertStatment(model)
             );
             result = true;                
@@ -25,7 +25,7 @@ public abstract class StrategyDAO<IModel> {
     public boolean update(IModel model) {
         boolean result = false;
         try {
-            this.dm.executeQuery(
+            this.dm.executeStatment(
                 this.getUpdateStatment(model)
             );
             result = true;                
@@ -39,7 +39,7 @@ public abstract class StrategyDAO<IModel> {
     public boolean delete(Integer id) {
         boolean result = false;
         try {
-            this.dm.executeQuery(
+            this.dm.executeStatment(
                 this.getDeleteStatment(id)
             );
             result = true;                

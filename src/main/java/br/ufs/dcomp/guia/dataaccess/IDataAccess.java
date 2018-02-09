@@ -2,6 +2,7 @@ package br.ufs.dcomp.guia.dataaccess;
 
 import br.ufs.dcomp.guia.model.*;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import java.util.List;
 
 public interface IDataAccess {
     public boolean createGuia(Guia guia);
@@ -16,8 +17,10 @@ public interface IDataAccess {
 
     public boolean createUsuario(Usuario usuario);
     public Usuario readUsuario(Integer id);
+    public List<Usuario> readAllUsuario();
     public boolean updateUsuario(Usuario usuario);
     public boolean deleteUsuario(Integer id);
+
 
     public boolean createAcesso(Acesso acesso);
     public Acesso readAcesso(Integer acesso);

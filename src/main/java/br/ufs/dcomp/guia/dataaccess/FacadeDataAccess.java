@@ -8,6 +8,7 @@ import br.ufs.dcomp.guia.model.Acesso;
 import br.ufs.dcomp.guia.model.Guia;
 import br.ufs.dcomp.guia.model.ItemGuia;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import java.util.List;
 
 public class FacadeDataAccess implements IDataAccess {
     private static FacadeDataAccess instance;
@@ -77,6 +78,11 @@ public class FacadeDataAccess implements IDataAccess {
 		return dao.delete(id);
 	}
 	@Override
+	public List<Usuario> readAllUsuario() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAll();
+	}	
+	@Override
 	public boolean createAcesso(Acesso acesso) {
 		AcessoDAO dao = new AcessoDAO();
 		return dao.create(acesso);
@@ -97,6 +103,4 @@ public class FacadeDataAccess implements IDataAccess {
 		AcessoDAO dao = new AcessoDAO();
 		return dao.delete(acesso);
 	}
-
-
 }

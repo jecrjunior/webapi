@@ -10,7 +10,16 @@ public class Usuario implements IModel {
     private Formacao formacao;
     private Setor setor;
     private Tipo tipo;
-    private Vinculo vinculo;
+	private Vinculo vinculo;
+	
+	public Usuario() {
+		this.exp = new Experiencia();
+		this.formacao = new Formacao();
+		this.setor = new Setor();
+		this.tipo = new Tipo();
+		this.vinculo = new Vinculo();
+	}
+
 	/**
 	 * @return the id
 	 */

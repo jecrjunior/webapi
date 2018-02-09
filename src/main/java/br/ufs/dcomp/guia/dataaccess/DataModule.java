@@ -41,5 +41,9 @@ public class DataModule {
     
 	public ResultSet executeQuery(String Query) throws SQLException {
 		return this.connection.createStatement().executeQuery(Query);
-	}    
+	}
+
+	public void executeStatment(String Query) throws SQLException {
+		this.connection.createStatement().execute(Query);
+	}
 }
