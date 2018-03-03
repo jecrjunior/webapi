@@ -20,6 +20,7 @@ public interface IDataAccess {
 
     public boolean createUsuario(Usuario usuario);
     public Usuario readUsuario(Integer id);
+    public Usuario readUsuario(String email, String senha);
     public List<Usuario> readAllUsuario();
     public boolean updateUsuario(Usuario usuario);
     public boolean deleteUsuario(Integer id);

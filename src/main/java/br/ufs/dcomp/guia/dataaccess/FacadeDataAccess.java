@@ -67,6 +67,10 @@ public class FacadeDataAccess implements IDataAccess {
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.read(id);
 	}
+	public Usuario readUsuario(String email, String senha) {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.read(email, senha);
+	}
 	@Override
 	public boolean updateUsuario(Usuario usuario) {
 		UsuarioDAO dao = new UsuarioDAO();

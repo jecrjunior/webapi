@@ -16,9 +16,9 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 			if (r.next()) {
 				guia = new Guia();
 				guia.setId(r.getInt("id"));
-				guia.setTitle(r.getString("title"));
+				guia.setTitle(r.getString("titulo"));
 				guia.setDescricao(r.getString("descricao"));
-				guia.setPublication(r.getTimestamp("publication"));
+				guia.setPublication(r.getTimestamp("publicacao"));
 				guia.setIdPai(r.getInt("idpai"));
 			}
 		} catch (SQLException e) {
@@ -31,7 +31,7 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 	@Override
 	public String getInsertStatment(Guia model) {
 		return String.format(
-			"INSERT INTO public.tb_guia(title, publication, descricao, idpai) VALUES (\'%s\', \'%s\', \'%s\', %s);",
+			"INSERT INTO public.tb_guia(titulo, publicacao, descricao, idpai) VALUES (\'%s\', \'%s\', \'%s\', %s);",
 			model.getTitle(), 
 			model.getPublication().toGMTString(), 
 			model.getDescricao(),
@@ -39,10 +39,10 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 		);
 	}
 
-	@Override
+	@Override	
 	public String getUpdateStatment(Guia model) {
 		return String.format(
-			"UPDATE public.tb_guia SET title=\'%s\', publication=\'%s\', descricao=\'%s\', idpai=%s WHERE (id = %s);",
+			"UPDATE public.tb_guia SET titulo=\'%s\', publicacao=\'%s\', descricao=\'%s\', idpai=%s WHERE (id = %s);",
 			model.getTitle(),
 			model.getPublication().toGMTString(),
 			model.getDescricao(),
@@ -69,7 +69,7 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 	}
 
 	public String getSelectAllStatment() {
-		return "SELECT id, title, publication, descricao, idpai FROM public.tb_guia ";
+		return "SELECT id, titulo, publicacao, descricao, idpai FROM public.tb_guia ";
 	}
 
 	@Override
@@ -89,8 +89,8 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 				Guia guia = new Guia();
 				guia.setId(r.getInt("id"));
 				guia.setDescricao(r.getString("descricao"));
-				guia.setTitle(r.getString("title"));
-				guia.setPublication(r.getTimestamp("publication"));
+				guia.setTitle(r.getString("titulo"));
+				guia.setPublication(r.getTimestamp("publicacao"));
 				guia.setIdPai(r.getInt("idpai"));
 				lstGuia.add(guia);
 			}
@@ -109,8 +109,8 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 				Guia guia = new Guia();
 				guia.setId(r.getInt("id"));
 				guia.setDescricao(r.getString("descricao"));
-				guia.setTitle(r.getString("title"));
-				guia.setPublication(r.getTimestamp("publication"));
+				guia.setTitle(r.getString("titulo"));
+				guia.setPublication(r.getTimestamp("publicacao"));
 				guia.setIdPai(r.getInt("idpai"));
 				lstGuia.add(guia);
 			}

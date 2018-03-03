@@ -33,6 +33,16 @@ public class UsuarioService {
         return this.dataAccess.readUsuario(id);
     }
 
+
+    @GET
+    @Path("login")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)     
+    public Usuario get(@DefaultValue("") @QueryParam("email") String email,
+    @DefaultValue("") @QueryParam("senha") String senha) {
+        return this.dataAccess.readUsuario(email, senha);
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)        

@@ -5,7 +5,8 @@ import br.ufs.dcomp.guia.model.IModel;
 public class Usuario implements IModel {
     private Integer id;
     private String nome;
-    private String email;
+	private String email;
+	private String senha;
     private Experiencia exp;
     private Formacao formacao;
     private Setor setor;
@@ -115,5 +116,19 @@ public class Usuario implements IModel {
 	 */
 	public void setVinculo(Vinculo vinculo) {
 		this.vinculo = vinculo;
+	}
+
+	/**
+	 * @return the senha
+	 */
+	public String getSenha() {
+		return senha;
+	}
+
+	/**
+	 * @param senha the senha to set
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }
