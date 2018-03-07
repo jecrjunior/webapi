@@ -7,7 +7,12 @@ import br.ufs.dcomp.guia.dataaccess.DAO.UsuarioDAO;
 import br.ufs.dcomp.guia.model.Acesso;
 import br.ufs.dcomp.guia.model.Guia;
 import br.ufs.dcomp.guia.model.ItemGuia;
+import br.ufs.dcomp.guia.model.usuario.Experiencia;
+import br.ufs.dcomp.guia.model.usuario.Formacao;
+import br.ufs.dcomp.guia.model.usuario.Setor;
+import br.ufs.dcomp.guia.model.usuario.Tipo;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import br.ufs.dcomp.guia.model.usuario.Vinculo;
 import java.util.List;
 
 public class FacadeDataAccess implements IDataAccess {
@@ -126,5 +131,30 @@ public class FacadeDataAccess implements IDataAccess {
 	public List<Acesso> readAllAcesso() {
 		AcessoDAO dao = new AcessoDAO();
 		return dao.readAll();
+	}
+	@Override
+	public List<Experiencia> readAllExperiencia() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAllExperiencia();
+	}
+	@Override
+	public List<Formacao> readAllFormacao() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAllFormacao();
+	}
+	@Override
+	public List<Setor> readAllSetor() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAllSetor();
+	}
+	@Override
+	public List<Tipo> readAllTipo() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAllTipo();
+	}
+	@Override
+	public List<Vinculo> readAllVinculo() {
+		UsuarioDAO dao = new UsuarioDAO();
+		return dao.readAllVinculo();
 	}
 }

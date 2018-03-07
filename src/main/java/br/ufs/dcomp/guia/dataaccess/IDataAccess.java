@@ -1,7 +1,12 @@
 package br.ufs.dcomp.guia.dataaccess;
 
 import br.ufs.dcomp.guia.model.*;
+import br.ufs.dcomp.guia.model.usuario.Experiencia;
+import br.ufs.dcomp.guia.model.usuario.Formacao;
+import br.ufs.dcomp.guia.model.usuario.Setor;
+import br.ufs.dcomp.guia.model.usuario.Tipo;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import br.ufs.dcomp.guia.model.usuario.Vinculo;
 import java.util.List;
 
 public interface IDataAccess {
@@ -24,6 +29,11 @@ public interface IDataAccess {
     public List<Usuario> readAllUsuario();
     public boolean updateUsuario(Usuario usuario);
     public boolean deleteUsuario(Integer id);
+    public List<Experiencia> readAllExperiencia();
+    public List<Formacao> readAllFormacao();
+    public List<Setor> readAllSetor();
+    public List<Tipo> readAllTipo();
+    public List<Vinculo> readAllVinculo();
 
 
     public boolean createAcesso(Acesso acesso);

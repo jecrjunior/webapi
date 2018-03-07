@@ -4,7 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioFormat.Encoding;
+import javax.sound.sampled.spi.FormatConversionProvider;
+
+import br.ufs.dcomp.guia.model.usuario.Experiencia;
+import br.ufs.dcomp.guia.model.usuario.Formacao;
+import br.ufs.dcomp.guia.model.usuario.Setor;
+import br.ufs.dcomp.guia.model.usuario.Tipo;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import br.ufs.dcomp.guia.model.usuario.Vinculo;
 
 public class UsuarioDAO extends StrategyDAO<Usuario> {
 
@@ -138,5 +149,101 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 	public String getDeleteStatment(Integer id) {
 		return String.format("DELETE FROM public.tb_usuario WHERE (id = %s);", id.toString());
 	}
+
+
+	public List<Formacao> readAllFormacao() {
+		List<Formacao> lstFormacao = new ArrayList<Formacao>();
+		try {
+			ResultSet r = this.dm.executeQuery(
+				"SELECT id, descricao FROM public.tb_usuario_formacao;");
+			while (r.next()) {
+				Formacao formacao = new Formacao();
+				formacao.setId(r.getInt("id"));
+				formacao.setDescricao(
+					r.getString("descricao")
+				);
+				lstFormacao.add(formacao);
+			}
+		} catch (SQLException e) {
+			lstFormacao = null;
+			e.printStackTrace();
+		}		
+		return lstFormacao;
+	}
+	
+	public List<Experiencia> readAllExperiencia() {
+		List<Experiencia> lstExperiencia = new ArrayList<Experiencia>();
+		try {
+			ResultSet r = this.dm.executeQuery(
+				"SELECT id, descricao, minimo, maximo FROM public.tb_usuario_experiencia;");
+			while (r.next()) {
+				Experiencia experiencia = new Experiencia();
+				experiencia.setId(r.getInt("id"));
+				experiencia.setDescricao(r.getString("descricao"));
+				experiencia.setMinimo(r.getInt("minimo"));
+				experiencia.setMaximo(r.getInt("maximo"));
+				lstExperiencia.add(experiencia);
+			}
+		} catch (SQLException e) {
+			lstExperiencia = null;
+			e.printStackTrace();
+		}		
+		return lstExperiencia;
+	}
+
+	public List<Setor> readAllSetor() {
+		List<Setor> lstSetor = new ArrayList<Setor>();
+		try {
+			ResultSet r = this.dm.executeQuery(
+				"SELECT id, descricao FROM public.tb_usuario_setor;");
+			while (r.next()) {
+				Setor setor = new Setor();
+				setor.setId(r.getInt("id"));
+				setor.setDescricao(r.getString("descricao"));
+				lstSetor.add(setor);
+			}
+		} catch (SQLException e) {
+			lstSetor = null;
+			e.printStackTrace();
+		}		
+		return lstSetor;
+	}
+
+	public List<Tipo> readAllTipo() {
+		List<Tipo> lstTipo = new ArrayList<Tipo>();
+		try {
+			ResultSet r = this.dm.executeQuery(
+				"SELECT id, descricao FROM public.tb_usuario_tipo;");
+			while (r.next()) {
+				Tipo tipo = new Tipo();
+				tipo.setId(r.getInt("id"));
+				tipo.setDescricao(r.getString("descricao"));
+				lstTipo.add(tipo);
+			}
+		} catch (SQLException e) {
+			lstTipo = null;
+			e.printStackTrace();
+		}		
+		return lstTipo;
+	}
+
+	public List<Vinculo> readAllVinculo() {
+		List<Vinculo> lstVinculo = new ArrayList<Vinculo>();
+		try {
+			ResultSet r = this.dm.executeQuery(
+				"SELECT id, descricao FROM public.tb_usuario_vinculo;");
+			while (r.next()) {
+				Vinculo vinculo = new Vinculo();
+				vinculo.setId(r.getInt("id"));
+				vinculo.setDescricao(r.getString("descricao"));
+				lstVinculo.add(vinculo);
+			}
+		} catch (SQLException e) {
+			lstVinculo = null;
+			e.printStackTrace();
+		}		
+		return lstVinculo;
+	}
+
 
 }

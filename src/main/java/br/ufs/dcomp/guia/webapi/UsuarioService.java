@@ -14,7 +14,12 @@ import javax.ws.rs.core.MediaType;
 
 import br.ufs.dcomp.guia.dataaccess.FacadeDataAccess;
 import br.ufs.dcomp.guia.dataaccess.IDataAccess;
+import br.ufs.dcomp.guia.model.usuario.Experiencia;
+import br.ufs.dcomp.guia.model.usuario.Formacao;
+import br.ufs.dcomp.guia.model.usuario.Setor;
+import br.ufs.dcomp.guia.model.usuario.Tipo;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
+import br.ufs.dcomp.guia.model.usuario.Vinculo;
 import java.util.List;
 
 @Path("usuario")
@@ -65,9 +70,37 @@ public class UsuarioService {
     }
 
     @GET
-    @Path("all")
+    @Path("formacao/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Usuario> getAll() {
-        return this.dataAccess.readAllUsuario();
+    public List<Formacao> getAllFormacao() {
+        return this.dataAccess.readAllFormacao();
     }
+
+    @GET
+    @Path("experiencia/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Experiencia> getAllExperiencia() {
+        return this.dataAccess.readAllExperiencia();
+    }
+
+    @GET
+    @Path("setor/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Setor> getAllSetor() {
+        return this.dataAccess.readAllSetor();
+    }
+    
+    @GET
+    @Path("tipo/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Tipo> getAllTipo() {
+        return this.dataAccess.readAllTipo();
+    }
+
+    @GET
+    @Path("vinculo/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Vinculo> getAllVinculo() {
+        return this.dataAccess.readAllVinculo();
+    }    
 }

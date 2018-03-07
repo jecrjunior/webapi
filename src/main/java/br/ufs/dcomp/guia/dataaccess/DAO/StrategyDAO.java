@@ -51,7 +51,7 @@ public abstract class StrategyDAO<IModel> {
         }
         return result;        
     }
-    //Abs
+    //
     public abstract String getInsertStatment(IModel model);
     public abstract String getUpdateStatment(IModel model);
     public abstract String getSelectStatment(Integer id);
