@@ -2,13 +2,8 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioFormat.Encoding;
-import javax.sound.sampled.spi.FormatConversionProvider;
 
 import br.ufs.dcomp.guia.model.usuario.Experiencia;
 import br.ufs.dcomp.guia.model.usuario.Formacao;
@@ -17,7 +12,7 @@ import br.ufs.dcomp.guia.model.usuario.Tipo;
 import br.ufs.dcomp.guia.model.usuario.Usuario;
 import br.ufs.dcomp.guia.model.usuario.Vinculo;
 
-public class UsuarioDAO extends StrategyDAO<Usuario> {
+public class UsuarioDAO extends DataAccessObject<Usuario> {
 
 	@Override
 	public Usuario read(Integer id) {
@@ -85,7 +80,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 
 
 	public List<Usuario> readAll() {
-		List<Usuario> lstUsuario = new ArrayList<Usuario>();
+		List<Usuario> lstUsuario = new LinkedList<Usuario>();
 		try {
 			ResultSet r = this.dm.executeQuery(this.getSelectAllStatment());
 			while (r.next()) {
@@ -152,7 +147,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 
 
 	public List<Formacao> readAllFormacao() {
-		List<Formacao> lstFormacao = new ArrayList<Formacao>();
+		List<Formacao> lstFormacao = new LinkedList<Formacao>();
 		try {
 			ResultSet r = this.dm.executeQuery(
 				"SELECT id, descricao FROM public.tb_usuario_formacao;");
@@ -172,7 +167,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 	}
 	
 	public List<Experiencia> readAllExperiencia() {
-		List<Experiencia> lstExperiencia = new ArrayList<Experiencia>();
+		List<Experiencia> lstExperiencia = new LinkedList<Experiencia>();
 		try {
 			ResultSet r = this.dm.executeQuery(
 				"SELECT id, descricao, minimo, maximo FROM public.tb_usuario_experiencia;");
@@ -192,7 +187,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 	}
 
 	public List<Setor> readAllSetor() {
-		List<Setor> lstSetor = new ArrayList<Setor>();
+		List<Setor> lstSetor = new LinkedList<Setor>();
 		try {
 			ResultSet r = this.dm.executeQuery(
 				"SELECT id, descricao FROM public.tb_usuario_setor;");
@@ -210,7 +205,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 	}
 
 	public List<Tipo> readAllTipo() {
-		List<Tipo> lstTipo = new ArrayList<Tipo>();
+		List<Tipo> lstTipo = new LinkedList<Tipo>();
 		try {
 			ResultSet r = this.dm.executeQuery(
 				"SELECT id, descricao FROM public.tb_usuario_tipo;");
@@ -228,7 +223,7 @@ public class UsuarioDAO extends StrategyDAO<Usuario> {
 	}
 
 	public List<Vinculo> readAllVinculo() {
-		List<Vinculo> lstVinculo = new ArrayList<Vinculo>();
+		List<Vinculo> lstVinculo = new LinkedList<Vinculo>();
 		try {
 			ResultSet r = this.dm.executeQuery(
 				"SELECT id, descricao FROM public.tb_usuario_vinculo;");

@@ -21,11 +21,11 @@ public class DataModule {
 		}
 	}
 	public void openConnection() throws SQLException{
-		String host = "127.0.0.1";
+		String host = "10.20.8.50";
 		String porta = "5432";
-		String database = "sga";
+		String database = "cajuantibio";
         String user = "postgres";
-        String password = "kamikaze";
+        String password = "sqL@2014";
 		        
         this.openConnection(host, porta, database, user, password);
     }

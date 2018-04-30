@@ -4,8 +4,8 @@ import br.ufs.dcomp.guia.container.ILeaf;
 
 public class ItemGuia implements IModel{
     private Integer id;
-    private String title;
-    private String content;
+    private String titulo;
+    private String conteudo;
     private Integer idPai;
     private ILeaf itemGuia;
 
@@ -24,26 +24,26 @@ public class ItemGuia implements IModel{
 	/**
 	 * @return the title
 	 */
-	public String getTitle() {
-		return title;
+	public String getTitulo() {
+		return titulo;
 	}
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitulo(String title) {
+		this.titulo = title;
 	}
 	/**
 	 * @return the content
 	 */
-	public String getContent() {
-		return content;
+	public String getConteudo() {
+		return conteudo;
 	}
 	/**
 	 * @param content the content to set
 	 */
-	public void setContent(String content) {
-		this.content = content;
+	public void setConteudo(String content) {
+		this.conteudo = content;
 	}
 	/**
 	 * @return the idPai

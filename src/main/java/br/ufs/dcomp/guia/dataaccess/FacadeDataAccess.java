@@ -157,4 +157,9 @@ public class FacadeDataAccess implements IDataAccess {
 		UsuarioDAO dao = new UsuarioDAO();
 		return dao.readAllVinculo();
 	}
+	@Override
+	public ItemGuia readItemGuiaChildOf(Integer idpai) {
+		ItemGuiaDAO dao = new ItemGuiaDAO();
+		return dao.readItemGuiaChildOf(idpai);
+	}
 }

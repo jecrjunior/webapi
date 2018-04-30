@@ -17,9 +17,6 @@ import br.ufs.dcomp.guia.dataaccess.IDataAccess;
 import br.ufs.dcomp.guia.model.Acesso;
 import java.util.List;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
 @Path("acesso")
 public class AcessoService {
 
@@ -48,7 +45,7 @@ public class AcessoService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String put(Acesso acesso) {
-        return this.dataAccess.createAcesso(acesso) ? "ok" : "error";
+        return this.dataAccess.updateAcesso(acesso) ? "ok" : "error";
     }
 
     @DELETE

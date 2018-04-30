@@ -3,10 +3,11 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import br.ufs.dcomp.guia.model.Guia;
 
-public class GuiaDAO extends StrategyDAO<Guia> {
+public class GuiaDAO extends DataAccessObject<Guia> {
 
 	@Override
 	public Guia read(Integer id) {
@@ -102,7 +103,7 @@ public class GuiaDAO extends StrategyDAO<Guia> {
 	}
 
 	public List<Guia> readChildsOf(Integer idPai) {
-		List<Guia> lstGuia = new ArrayList<Guia>();
+		List<Guia> lstGuia = new LinkedList<Guia>();
 		try {
 			ResultSet r = this.dm.executeQuery(this.getSelectStatmentChildsOf(idPai));
 			while (r.next()) {

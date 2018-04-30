@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IDataAccess {
     public boolean createGuia(Guia guia);
-    public Guia readGuia(Integer id);
+    public Guia readGuia(Integer id);   
     public List<Guia> readAllGuia();
     public List<Guia> readChildsOf(Integer idPai);    
     public boolean updateGuia(Guia guia);
@@ -22,6 +22,7 @@ public interface IDataAccess {
     public List<ItemGuia> readAllItemGuia();
     public boolean updateItemGuia(ItemGuia itemGuia);
     public boolean deleteItemGuia(Integer id);
+    public ItemGuia readItemGuiaChildOf(Integer idpai);
 
     public boolean createUsuario(Usuario usuario);
     public Usuario readUsuario(Integer id);

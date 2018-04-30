@@ -17,9 +17,6 @@ import br.ufs.dcomp.guia.dataaccess.IDataAccess;
 import br.ufs.dcomp.guia.model.ItemGuia;
 import java.util.List;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
 @Path("item_guia")
 public class ItemGuiaService {
     IDataAccess dataAccess;
@@ -36,6 +33,14 @@ public class ItemGuiaService {
         return this.dataAccess.readItemGuia(id);
     }
 
+    @GET
+    @Path("childOf")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ItemGuia getChildOf(@DefaultValue("-1") @QueryParam("idpai") Integer idpai) {
+        return this.dataAccess.readItemGuiaChildOf(idpai);
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
@@ -47,7 +52,7 @@ public class ItemGuiaService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String put(ItemGuia itemGuia) {
-        return this.dataAccess.createItemGuia(itemGuia) ? "ok" : "error";
+        return this.dataAccess.updateItemGuia(itemGuia) ? "ok" : "error";
     }
 
     @DELETE

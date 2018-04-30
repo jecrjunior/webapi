@@ -3,10 +3,11 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import br.ufs.dcomp.guia.model.Acesso;
 
-public class AcessoDAO extends StrategyDAO<Acesso>{
+public class AcessoDAO extends DataAccessObject<Acesso>{
 
 	@Override
 	public Acesso read(Integer id) {
@@ -67,20 +68,20 @@ public class AcessoDAO extends StrategyDAO<Acesso>{
 
 	@Override
 	public List<Acesso> readAll() {
-		List<Acesso> lstAcesso = new ArrayList<Acesso>();
+		List<Acesso> lstAcesso = new LinkedList<Acesso>();
 		try {
 			ResultSet r = this.dm.executeQuery(this.getSelectAllStatment());
 			while (r.next()) {
 				Acesso acesso = new Acesso();
 				acesso.setId(r.getInt("id"));
-				acesso.setItemGuia(r.getInt("content"));
-				acesso.setUsuario(r.getInt("title"));
-				acesso.setMomento(r.getDate("idpai"));
+				acesso.setItemGuia(r.getInt("guia"));
+				acesso.setUsuario(r.getInt("usuario"));
+				acesso.setMomento(r.getTimestamp("momento"));
 				lstAcesso.add(acesso);
 			}
 		} catch (SQLException e) {
-			lstAcesso = null;
-			e.printStackTrace();
+			lstAcesso = null;			
+			//e.printStackTrace();
 		}		
 		return lstAcesso;
 	}

@@ -4,7 +4,7 @@ import br.ufs.dcomp.guia.dataaccess.DataModule;
 import br.ufs.dcomp.guia.model.IModel;
 import java.util.List;
 
-public abstract class StrategyDAO<IModel> {
+public abstract class DataAccessObject<IModel> {
     DataModule dm = DataModule.getInstance();
     
     public boolean create(IModel model) {

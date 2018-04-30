@@ -17,9 +17,6 @@ import br.ufs.dcomp.guia.dataaccess.IDataAccess;
 import br.ufs.dcomp.guia.model.Guia;
 import java.util.List;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
 @Path("guia")
 public class GuiaService {
     IDataAccess dataAccess;
@@ -47,7 +44,7 @@ public class GuiaService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String put(Guia guia) {
-        return this.dataAccess.createGuia(guia) ? "ok" : "error";
+        return this.dataAccess.updateGuia(guia) ? "ok" : "error";
     }
 
     @DELETE

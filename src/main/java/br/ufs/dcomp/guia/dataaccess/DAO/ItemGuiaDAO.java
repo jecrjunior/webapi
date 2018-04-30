@@ -2,11 +2,11 @@ package br.ufs.dcomp.guia.dataaccess.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import br.ufs.dcomp.guia.model.ItemGuia;
 
-public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
+public class ItemGuiaDAO extends DataAccessObject<ItemGuia> {
 
 	@Override
 	public ItemGuia read(Integer id) {
@@ -16,8 +16,8 @@ public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
 			if (r.next()) {
 				itemGuia = new ItemGuia();
 				itemGuia.setId(r.getInt("id"));
-				itemGuia.setTitle(r.getString("title"));
-				itemGuia.setContent(r.getString("content"));
+				itemGuia.setTitulo(r.getString("titulo"));
+				itemGuia.setConteudo(r.getString("conteudo"));
 				itemGuia.setIdPai(r.getInt("idguia"));
 			}
 		} catch (SQLException e) {
@@ -30,9 +30,9 @@ public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
 	@Override
 	public String getInsertStatment(ItemGuia model) {
 		return String.format(
-			"INSERT INTO public.tb_item_guia(title, content, idguia) VALUES (\'%s\', \'%s\', %s);",
-			model.getTitle(), 
-			model.getContent(),
+			"INSERT INTO public.tb_item_guia(titulo, conteudo, idguia) VALUES (\'%s\', \'%s\', %s);",
+			model.getTitulo(), 
+			model.getConteudo(),
 			model.getIdPai().toString() 
 		);
 	}
@@ -40,9 +40,9 @@ public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
 	@Override
 	public String getUpdateStatment(ItemGuia model) {
 		return String.format(
-			"UPDATE public.tb_item_guia SET title=\'%s\', content=\'%s\', idguia=%s WHERE (id = %s);",
-			model.getTitle(),
-			model.getContent(),
+			"UPDATE public.tb_item_guia SET titulo=\'%s\', conteudo=\'%s\', idguia=%s WHERE (id = %s);",
+			model.getTitulo(),
+			model.getConteudo(),
 			model.getIdPai().toString(),
 			model.getId().toString() 
 		);
@@ -67,15 +67,15 @@ public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
 
 	@Override
 	public List<ItemGuia> readAll() {
-		List<ItemGuia> lstItemGuia = new ArrayList<ItemGuia>();
+		List<ItemGuia> lstItemGuia = new LinkedList<ItemGuia>();
 		try {
 			ResultSet r = this.dm.executeQuery(this.getSelectAllStatment());
 			while (r.next()) {
 				ItemGuia itemGuia = new ItemGuia();
 				itemGuia.setId(r.getInt("id"));
-				itemGuia.setContent(r.getString("content"));
-				itemGuia.setTitle(r.getString("title"));
-				itemGuia.setIdPai(r.getInt("idpai"));
+				itemGuia.setConteudo(r.getString("conteudo"));
+				itemGuia.setTitulo(r.getString("titulo"));
+				itemGuia.setIdPai(r.getInt("idguia"));
 				lstItemGuia.add(itemGuia);
 			}
 		} catch (SQLException e) {
@@ -87,7 +87,34 @@ public class ItemGuiaDAO extends StrategyDAO<ItemGuia> {
 
 	@Override
 	public String getSelectAllStatment() {
-		return "SELECT id, title, content, idguia FROM public.tb_item_guia";
+		return "SELECT id, titulo, conteudo, idguia FROM public.tb_item_guia";
+	}
+
+
+	public String getSelectStatmentGuiaPai(Integer id) {
+		return String.format(
+			this.getSelectAllStatment() +
+			" WHERE (idguia = %s);",
+			id.toString()
+		);
+	}
+	
+	public ItemGuia readItemGuiaChildOf(Integer idpai) {
+		ItemGuia itemGuia = null;
+		try {
+			ResultSet r = this.dm.executeQuery(this.getSelectStatmentGuiaPai(idpai));
+			if (r.next()) {
+				itemGuia = new ItemGuia();
+				itemGuia.setId(r.getInt("id"));
+				itemGuia.setTitulo(r.getString("titulo"));
+				itemGuia.setConteudo(r.getString("conteudo"));
+				itemGuia.setIdPai(r.getInt("idguia"));
+			}
+		} catch (SQLException e) {
+			itemGuia = null;
+			e.printStackTrace();
+		}
+		return itemGuia;
 	}
 
 

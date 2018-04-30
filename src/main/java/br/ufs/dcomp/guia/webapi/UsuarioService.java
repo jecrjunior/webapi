@@ -59,7 +59,7 @@ public class UsuarioService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)        
     public String put(Usuario usuario) {
-        return this.dataAccess.createUsuario(usuario) ? "ok" : "error";
+        return this.dataAccess.updateUsuario(usuario) ? "ok" : "error";
     }
 
     @DELETE
